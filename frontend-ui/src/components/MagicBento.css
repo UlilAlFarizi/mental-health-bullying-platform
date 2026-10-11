@@ -1,0 +1,123 @@
+:root {
+  --sage-rgb: 122, 155, 118;
+  --sage-glow: rgba(var(--sage-rgb), 0.15);
+  --border-color: #e2e8f0;
+  --background-light: #ffffff;
+}
+
+.card-grid {
+  display: grid;
+  gap: 25px;
+  width: 100%;
+}
+
+.magic-bento-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* KUNCI PERBAIKAN: Hapus aspect-ratio dan gunakan min-height + box-sizing */
+  min-height: 200px;
+  height: 100%; 
+  width: 100%;
+  padding: 30px 25px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: var(--background-light);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-sizing: border-box; /* Mencegah padding merusak ukuran lebar */
+
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 250px;
+}
+
+.magic-bento-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.magic-bento-card__header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+}
+
+.magic-bento-card__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Mendorong teks agar memenuhi ruang */
+}
+
+.magic-bento-card__icon {
+  font-size: 35px;
+  margin-bottom: 15px;
+}
+
+.magic-bento-card__title {
+  color: var(--sage-dark);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+}
+
+.magic-bento-card__description {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsivitas Grid yang Kokoh */
+@media (max-width: 768px) {
+  .card-grid { 
+    grid-template-columns: 1fr; /* Memaksa 1 baris ke bawah di HP */
+  }
+}
+@media (min-width: 769px) {
+  .card-grid { 
+    /* Otomatis membuat 3 kolom, atau menyesuaikan ruang jika sempit */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  }
+}
+
+/* Efek Cahaya Tepi (Border Glow) */
+.magic-bento-card--border-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 3px; 
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--sage-rgb), calc(var(--glow-intensity) * 0.6)) 0%,
+    rgba(var(--sage-rgb), calc(var(--glow-intensity) * 0.2)) 40%,
+    transparent 70%
+  );
+  border-radius: inherit;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.magic-bento-card--border-glow:hover {
+  box-shadow: 0 4px 20px rgba(122, 155, 118, 0.15), 0 0 30px var(--sage-glow);
+}
+
+.global-spotlight {
+  will-change: transform, opacity;
+  z-index: 200 !important;
+  pointer-events: none;
+}
+
+.bento-section {
+  position: relative;
+  width: 100%;
+}

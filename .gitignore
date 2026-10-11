@@ -1,0 +1,13 @@
+# Abaikan file environment & credentials
+.env
+.env.*
+backend-api/.env
+frontend-ui/.env
+
+# Abaikan dependensi berat (agar push tidak gagal/berat)
+backend-api/vendor/
+frontend-ui/node_modules/
+
+# Abaikan database lokal SQLite & log Laravel
+backend-api/database/*.sqlite
+backend-api/storage/logs/*.log
