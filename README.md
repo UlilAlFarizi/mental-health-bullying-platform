@@ -34,9 +34,18 @@ cp .env.example .env
 php artisan key:generate
 php artisan migrate
 php artisan serve
+```
 
 ### 2. Frontend UI (React + Vite)
 ```bash
 cd frontend-ui
 npm install
 npm run dev
+```
+
+---
+
+## 👤 Pengembang
+- **Ulil Al Farizi** – *Backend Developer & AI System Integrator*
+- LinkedIn: [https://www.linkedin.com/in/ulil-al-farizi/](https://www.linkedin.com/in/ulil-al-farizi/)
+- GitHub: [@UlilAlFarizi](https://github.com/UlilAlFarizi)
