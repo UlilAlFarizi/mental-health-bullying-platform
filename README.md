@@ -34,3 +34,9 @@ cp .env.example .env
 php artisan key:generate
 php artisan migrate
 php artisan serve
+
+### 2. Frontend UI (React + Vite)
+```bash
+cd frontend-ui
+npm install
+npm run dev
